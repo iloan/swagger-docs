@@ -41,11 +41,11 @@ module Swagger
       end
 
       def resource_path
-        demod
+        "/#{demod}"
       end
 
       def resource_file_path
-        trim_leading_slash(debased_path.to_s.underscore)
+        debased_path.to_s.underscore
       end
 
       def models

@@ -43,7 +43,8 @@ module Swagger
 
       def param(param_type, name, type, required, description = nil, hash={})
         parameters << {:param_type => param_type, :name => name, :type => type,
-          :description => description, :required => required == :required}.merge(hash)
+          :description => description, :required => required == :required}.
+          merge!(hash).reject {|_k, v| v.nil? }
       end
 
       # helper method to generate enums
@@ -60,9 +61,9 @@ module Swagger
         if status.is_a? Symbol
           status == :ok if status == :success
           status_code = Rack::Utils.status_code(status)
-          response_messages << {:code => status_code, :responseModel => model, :message => text || status.to_s.titleize}
+          response_messages << {:code => status_code, :responseModel => model, :message => text || status.to_s.titleize}.reject {|_k, v| v.nil? }
         else
-          response_messages << {:code => status, :responseModel => model, :message => text}
+          response_messages << {:code => status, :responseModel => model, :message => text}.reject {|_k, v| v.nil? }
         end
         response_messages.sort_by!{|i| i[:code]}
       end
