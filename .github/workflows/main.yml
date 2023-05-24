@@ -32,3 +32,4 @@ jobs:
       run: ./wizcli iac scan --path $SCAN_PATH --policy "$POLICY"  --tag repo=$GITHUB_REPOSITORY --tag branch=$GITHUB_REF_NAME --tag commit=$GITHUB_SHA  --policy-hits-only --timeout 30m
     - name: Run wiz-cli custom-policy-secrets scan
       run: ./wizcli iac scan --path $SCAN_PATH --policy "custom-policy-secrets" --tag repo=$GITHUB_REPOSITORY --tag branch=$GITHUB_REF_NAME --tag commit=$GITHUB_SHA  --policy-hits-only --timeout 30m
+
